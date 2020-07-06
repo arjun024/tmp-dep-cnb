@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+set -eu
+mkdir -p /layers/tmp-dep-cnb/
+pushd /layers/tmp-dep-cnb
+    curl -L https://buildpacks.cloudfoundry.org/dependencies/dep/dep-v0.5.4-linux-x64-cflinuxfs3-79b3ab9e.tgz -o dep.tgz
+    tar -xvf dep.tgz
+    mkdir -p env.build
+    echo "/layers/tmp-dep-cnb/bin" > "env.build/PATH.prepend"
+    echo ":" > "env.build/PATH.delim"
+popd
